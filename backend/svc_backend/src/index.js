@@ -4,8 +4,8 @@ const { Pool } = require('pg');
 const app = express();
 const pool = new Pool({
   user: 'postgres',
-  host: 'localhost',
-  database: 'postgres',
+  host: 'postgres',
+  database: 'trabajorest',
   password: 'postgres',
   port: 5432,
 });

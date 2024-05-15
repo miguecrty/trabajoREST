@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  backend:
+    build:
+      context: ./backend
+    ports:
+      - "3000:3000"
+    networks:
+      - red
+  # frontend:
+  #   build:
+  #     context: ./frontend
+  #   ports:
+  #     - "8080:8080"
+  #   networks:
+  #     - red
+  postgres:
+    image: docker.io/postgres:latest
+    networks:
+      - red
+    ports:
+      - "5432:5432"
+    volumes:
+      - "./bbdd/svc_bbdd:/docker-entrypoint-initdb.d/"
+    environment:
+      POSTGRES_PASSWORD: postgres
+networks:
+  red:
+    driver: bridge
