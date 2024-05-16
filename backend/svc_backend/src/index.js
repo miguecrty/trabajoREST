@@ -4,7 +4,7 @@ const { Pool } = require('pg');
 const app = express();
 const pool = new Pool({
   user: 'postgres',
-  host: 'postgres',
+  host: '10.88.0.3',
   database: 'trabajorest',
   password: 'postgres',
   port: 5432,
@@ -26,6 +26,7 @@ const server = app.listen(PORT, () => {
 
 app.get('/contactos', async (req, res) => {
   try {
+    console.log("holaaa");
     const result = await pool.query('SELECT * FROM contactos');
     res.json(result.rows);
   } catch (error) {
@@ -33,6 +34,41 @@ app.get('/contactos', async (req, res) => {
     res.status(500).send("Error al procesar la solicitud GET");
   }
 });
+
+
+
+app.post('/login', async (req, res) => {
+  try {
+    const { username, password } = req.body;
+    console.log("Usuario:", username);
+    console.log("Contraseña:", password);
+
+    try {
+      const result = await pool.query('SELECT * FROM contactos WHERE nombre_usu=$1 AND clave=$2', [username, password]);
+
+      console.log("Resultados:", result.rows);
+      
+      if (result.rows.length > 0) {
+        res.sendStatus(200); 
+      } else {
+        res.status(401).json({ error: 'Credenciales incorrectas' });
+      }
+    } catch (error) {
+      console.error('Error al ejecutar la consulta:', error);
+      res.status(500).json({ error: 'Error al procesar la solicitud de inicio de sesión' });
+    }
+  
+  } catch (error) {
+    console.error('Error al procesar la solicitud de inicio de sesión:', error);
+    res.status(500).json({ error: 'Error al procesar la solicitud de inicio de sesión' });
+  }
+});
+
+
+
+
+
+
 
 // Manejar la solicitud POST para insertar un nuevo contacto
 app.post('/contactos', async (req, res) => {
