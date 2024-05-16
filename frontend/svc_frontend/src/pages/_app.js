@@ -1,5 +1,4 @@
 import '../styles/home.css';
-export const server = "backend:3000";
 
 function MyApp({ Component, pageProps }) {
 

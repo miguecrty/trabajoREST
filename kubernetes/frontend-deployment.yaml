@@ -16,4 +16,4 @@ spec:
       - name: frontend
         image: docker.io/miguecrty/trabajorest:frontend
         ports:
-        - containerPort: 4200
+        - containerPort: 8080

@@ -16,4 +16,4 @@ spec:
       - name: postgres
         image: docker.io/miguecrty/trabajorest:postgres
         ports:
-        - containerPort: 80
+        - containerPort: 5432
