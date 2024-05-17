@@ -9,9 +9,9 @@ const DetalleContacto = () => {
     const [cliente, setCliente] = useState(null);
 
     useEffect(() => {
-        async function fetchDetalleCliente() {
+        async function fetchDetalleCliente(peticion) {
             try {
-                const response = await fetch(`/api/obtenerdetalle?id=${router.query.id}`);
+                const response = await fetch(peticion);
                 if (!response.ok) {
                     throw new Error('Error al obtener detalle del cliente');
                 }
@@ -23,9 +23,15 @@ const DetalleContacto = () => {
             }
         }
         if (router.query.id) {
-            fetchDetalleCliente();
+            let peticion = `/api/obtenerdetalle?id=${router.query.id}`;
+            fetchDetalleCliente(peticion);
         }
-    }, [router.query.id]);
+        if (router.query.n)
+        {
+            let peticion = `/api/obtenerdetalle?n=${router.query.n}`;
+            fetchDetalleCliente(peticion);
+        }
+    }, [router.query.id,router.query.n]);
 
     return (
         <div>

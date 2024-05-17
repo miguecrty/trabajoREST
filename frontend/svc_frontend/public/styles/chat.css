@@ -1,0 +1,33 @@
+.messages {
+    display: flex;
+    flex-direction: column;
+}
+
+.message {
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.sent {
+    background-color: #a570e2;
+    color: white;
+    align-self: flex-end; /* Alinea los mensajes propios a la derecha */
+}
+
+.received {
+    background-color: #f0f0f0;
+    color: #333;
+    align-self: flex-start; /* Alinea los mensajes recibidos a la izquierda */
+}
+.chat-container {
+    max-height: 600px; /* Establece una altura máxima */
+    min-height: 600px;
+}
+.messages{
+    max-height: 500px;
+    overflow-y: auto; /* Agrega una barra de desplazamiento vertical cuando sea necesario */
+    scroll-behavior: smooth; /* Hace que el desplazamiento sea suave */
+    scroll-padding-bottom: 20px; /* Ajusta el espacio para que la barra de desplazamiento esté por defecto abajo */
+}

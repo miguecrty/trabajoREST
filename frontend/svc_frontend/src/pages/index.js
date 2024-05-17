@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import Cookies from 'js-cookie'; // Importa la biblioteca para manejar cookies
 import Pie from '../components/pie';
 import Head from 'next/head';
+import Cabecera from '@/components/cabecera';
 
 const Home = () => {
     const router = useRouter();
@@ -79,9 +80,18 @@ const Home = () => {
     if (isLoading) {
         // Si isLoading es true, la página está cargando
         return (
+            <>
+            <Head>
+                <title>Cargando...</title>
+                <link rel="icon" href="/images/chat.png" />
+                <link rel="stylesheet" href="./styles/detallecontacto.css" />
+            </Head>
+            <Cabecera mostrarBotonHome={false} mostrarCerrarSesion={true}/>
             <div className="cargando">
                     <img src="/images/cargando.gif" alt="Cargando" />
             </div>
+            <Pie />
+            </>
         );
     }
 

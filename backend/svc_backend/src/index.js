@@ -98,7 +98,17 @@ app.delete('/contactos', async (req, res) => {
 app.get('/obtenerdetalle', async (req, res) => {
   try {
     const id = req.query.id;
-    const result = await pool.query('SELECT id, nombre_usu, nombre, apellido, email, telefono, imagen FROM contactos where id = $1',[id]);
+    const nombre_usu = req.query.nombre_usu;
+    let consulta;
+    if(id != null)
+      {
+        consulta = `SELECT id, nombre_usu, nombre, apellido, email, telefono, imagen FROM contactos where id = ${id}`;
+      }
+    if(nombre_usu != null)
+      {
+        consulta = `SELECT id, nombre_usu, nombre, apellido, email, telefono, imagen FROM contactos where nombre_usu = '${nombre_usu}'`;
+      }
+    const result = await pool.query(consulta);
     res.json(result.rows);
   } catch (error) {
     console.error('Error al procesar la solicitud GET:', error);

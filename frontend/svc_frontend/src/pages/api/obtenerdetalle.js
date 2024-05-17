@@ -1,7 +1,18 @@
 export default async function handler(req, res) {
     try {
         const id = req.query.id;
-        const response = await fetch(`http://localhost:3000/obtenerdetalle?id=${id}`, {
+        let nombre_usu = req.query.n;
+        let peticion = `http://localhost:3000/obtenerdetalle?`;
+        if (id != null)
+            {
+                peticion = `http://localhost:3000/obtenerdetalle?id=${id}`;
+            }
+        if (nombre_usu != null)
+            {
+                peticion = `http://localhost:3000/obtenerdetalle?nombre_usu=${nombre_usu}`;
+               
+            }
+        const response = await fetch(peticion, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
