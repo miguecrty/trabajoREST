@@ -22,11 +22,11 @@
     align-self: flex-start; /* Alinea los mensajes recibidos a la izquierda */
 }
 .chat-container {
-    max-height: 600px; /* Establece una altura máxima */
-    min-height: 600px;
+    max-height: 500px; /* Establece una altura máxima */
+    min-height: 500px;
 }
 .messages{
-    max-height: 500px;
+    max-height: 400px;
     overflow-y: auto; /* Agrega una barra de desplazamiento vertical cuando sea necesario */
     scroll-behavior: smooth; /* Hace que el desplazamiento sea suave */
     scroll-padding-bottom: 20px; /* Ajusta el espacio para que la barra de desplazamiento esté por defecto abajo */

@@ -3,29 +3,83 @@ import Cabecera from '@/components/cabecera';
 import Pie from '../components/pie';
 import Head from 'next/head';
 import Cookies from 'js-cookie';
+import Link from 'next/link';
+import io from 'socket.io-client';
 
 const Chat = () => {
     const [mensaje, setMensaje] = useState('');
     const [mensajes, setMensajes] = useState([]);
     const username = Cookies.get('username');
     const mensajesRef = useRef(null);
+    const messagesEndRef = useRef(null);
+    async function actualizarTablaMensajes() {
+        try {
+            const response = await fetch('/api/obtenermensajes', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+            });
+            const respuesta = await response.json();
+            if (response.ok) {
+                setMensajes(respuesta);
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    }
 
     useEffect(() => {
-        // Cuando cambie la lista de mensajes, asegúrate de que la barra de desplazamiento esté siempre en la parte inferior
-        if (mensajesRef.current) {
-            mensajesRef.current.scrollTop = mensajesRef.current.scrollHeight;
-        }
+        const eventSource = new EventSource('/api/sse');
+  eventSource.onmessage = (event) => {
+    const data = JSON.parse(event.data);
+    console.log('Received message from server:', data);
+    // Maneja los eventos recibidos según sea necesario
+    // Por ejemplo, puedes actualizar el estado de los mensajes
+  };
+        actualizarTablaMensajes();
+    }, []);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            actualizarTablaMensajes();
+        }, 2000);
+
+        return () => clearInterval(interval);
+    }, []);
+
+    useEffect(() => {
+        scrollToBottom();
     }, [mensajes]);
 
-    const handleEnviarMensaje = () => {
+    const scrollToBottom = () => {
+        messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    };
+
+    async function insertarMensaje(mensaje) {
+        try {
+            const response = await fetch('/api/insertarmensaje', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(mensaje)
+            });
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    }
+
+    const handleEnviarMensaje = async () => {
         if (mensaje.trim() !== '') {
             const nuevoMensaje = {
                 contenido: mensaje,
-                remitente: 'Tú',
+                nombre_usu: username,
                 hora: obtenerHoraActual()
             };
-            setMensajes([...mensajes, nuevoMensaje]);
+            await insertarMensaje(nuevoMensaje);
             setMensaje('');
+            actualizarTablaMensajes();
         }
     };
 
@@ -39,7 +93,8 @@ const Chat = () => {
         const fecha = new Date();
         const hora = fecha.getHours().toString().padStart(2, '0');
         const minutos = fecha.getMinutes().toString().padStart(2, '0');
-        return `${hora}:${minutos}`;
+        const segundos = fecha.getSeconds().toString().padStart(2, '0');
+        return `${hora}:${minutos}:${segundos}`;
     };
 
     return (
@@ -56,11 +111,25 @@ const Chat = () => {
                     <div className="card-body">
                         <div className="messages">
                             {mensajes.map((msg, index) => (
-                                <div className="message sent" key={index}>
-                                    <p>{msg.contenido}</p>
-                                    <small className="text-muted">{msg.remitente} - {msg.hora}</small>
-                                </div>
+                                msg.nombre_usu === username ? (
+                                    <div className="message sent" key={index}>
+                                        <p>{msg.mensaje}</p>
+                                        <Link href={`/detallecontacto?n=${username}`}>
+                                            <small className="text-muted">Tú</small>
+                                        </Link>
+                                        <small className="text-muted"> - {msg.hora}</small>
+                                    </div>
+                                ) : (
+                                    <div className="message received" key={index}>
+                                        <p>{msg.mensaje}</p>
+                                        <Link href={`/detallecontacto?n=${msg.nombre_usu}`}>
+                                            <small className="text-muted">{msg.nombre_usu}</small>
+                                        </Link>
+                                        <small className="text-muted"> - {msg.hora}</small>
+                                    </div>
+                                )
                             ))}
+                            <div ref={messagesEndRef} />
                         </div>
                     </div>
                     <div className="card-footer">

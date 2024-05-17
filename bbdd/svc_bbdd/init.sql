@@ -21,7 +21,7 @@ id SERIAL,
 nombre_usu VARCHAR(20),
 hora TEXT,
 mensaje TEXT,
-PRIMARY KEY (nombre_usu));
+PRIMARY KEY (id));
 
 
 INSERT INTO CONTACTOS (nombre_usu, clave, nombre, apellido, email, telefono, imagen, estado) VALUES

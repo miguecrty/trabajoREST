@@ -126,15 +126,36 @@ app.get('/obtenercontactos', async (req, res) => {
   }
 });
 
+app.get('/obtenermensajes', async (req, res) => {
+  try {
+    const result = await pool.query('SELECT nombre_usu, hora, mensaje FROM chat ORDER BY id');
+    res.status(200).json(result.rows);
+  } catch (error) {
+    console.error('Error al procesar la solicitud GET:', error);
+    res.status(500).send("Error al procesar la solicitud GET");
+  }
+});
+
+
 app.put('/actualizarestado', async (req, res) => {
   try {
     
     const { username, estado }= req.body;
-    console.log(username+estado);
     await pool.query('UPDATE contactos SET estado = $1 WHERE nombre_usu = $2', [estado,username]);
     res.status(200).send("Estado actualizado correctamente");
   } catch (error) {
     console.error('Error al actualizar el contacto:', error);
     res.status(500).send("Error al actualizar el contacto");
+  }
+});
+
+app.put('/insertarmensaje', async (req, res) => {
+  try {
+    const { contenido, nombre_usu ,hora}= req.body;
+    await pool.query(`INSERT INTO chat (nombre_usu, hora, mensaje) VALUES ('${nombre_usu}','${hora}','${contenido}')`);
+    res.status(200).send("Mensaje insertado correctamente");
+  } catch (error) {
+    console.error('Error al insertar el mensaje:', error);
+    res.status(500).send("Error al insertar el mensaje");
   }
 });
