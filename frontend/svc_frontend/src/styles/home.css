@@ -1,14 +1,9 @@
+@import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 /* Estilos para el componente Home */
 body {
   background-color: rgb(250, 250, 253);
   margin: 0;
   padding: 0;
-}
-.container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
 }
 
 .login-form {
@@ -32,6 +27,40 @@ body {
   border: 2px solid #ccc; /* Borde */
   border-radius: 10px; /* Borde redondeado */
   font-size: 18px; /* Tamaño de la fuente */
+}
+.login-form .user-fields {
+  display: flex;
+  width: 70%;
+}
+.login-form .user-fields input{
+text-align: center;
+font-size: 20px;
+}
+
+.login-form .name-fields {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.login-form .name-fields input {
+  margin-right: 10px; /* Ajusta el margen derecho para separar los campos */
+}
+
+.login-form .contact-fields {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.login-form .contact-fields input {
+  margin-right: 10px; /* Ajusta el margen derecho para separar los campos */
+}
+.login-form .password-fields {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.login-form .password-fields input {
+  margin-right: 10px;
 }
 
 .login-form button {
@@ -59,6 +88,7 @@ body {
 .exito-message {
   color: green; /* Color verde */
 }
+
 .cargando {
   display: flex;
   flex-direction: column;
@@ -103,20 +133,24 @@ body {
   text-align: center; /* Centra el texto horizontalmente */
   margin-bottom: 10px;
 }
+
 .menu-list li:hover {
   background-color: #dfd9d985; /* Cambia el color de fondo al pasar sobre los elementos */
 }
+
 .menu-item {
   margin-top: 15px;
   font-weight: bold; /* Texto en negrita */
   font-size: 16px; /* Tamaño del texto */
 }
+
 .menu-item-container {
   border: 1px solid rgb(107, 137, 235); /* Agrega un borde de 1px sólido negro */
   padding: 10px; /* Ajusta el espaciado interno según sea necesario */
   margin: 5px 0; /* Ajusta el margen entre los elementos de la lista */
   cursor: pointer; /* Cambia el cursor al modo de selección */
 }
+
 .btn {
   border: 2px solid black;
   color: black;
@@ -135,13 +169,13 @@ body {
 .home:hover {
   background: #e7e55a;
 }
+
 /* Red */
 .cerrar {
   padding: 14px 28px;
   background-color: rgb(212, 38, 38);
   border-color: #770404;
-  color: rgb(255, 255, 255)
-  
+  color: rgb(255, 255, 255);
 }
 
 .cerrar:hover {
@@ -149,205 +183,3 @@ body {
   color: rgb(78, 15, 15);
 }
 
-.opcion {
-  padding: 8px;
-  margin-bottom: 10px;
-  cursor: pointer;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  display: flex;
-  align-items: center;
-}
-
-.opcion:hover {
-  background-color: #f0f0f0;
-}
-
-.opcion span {
-  margin-left: 10px;
-}
-
-.contenedores {
-  display: flex;
-}
-
-.contenedor1 {
-  align-items: center;
-  transform:translatex(21px) translatey(50px);
-  width:461px;
-}
-.contenedor2 {
-  display: flex;
-}
-
-.opcion {
-  padding: 8px;
-  margin-bottom: 10px;
-  cursor: pointer;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  display: flex;
-  align-items: center;
-  
-}
-
-.opcion:hover {
-  background-color: #f0f0f0;
-}
-
-.opcion span {
-  margin-left: 10px;
-}
-
-.contenedores .contenedor1 .listalugares {
-  display: flex;
-  width: 100%;
-  flex-direction: column
-}
-.contenedores .contenedor2 canvas {
-  display: static;
-}
-
- 
-.seleccion {
-  display: fixed;
-  border: 10px #007bff;
-  width:100% !important;
-  height:20%;
-}
-.eltiempo {
-  margin-left: 10px;
-  display: fixed;
-  border: 10px #007bff;
-  width:99% !important;
-  height:60%;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-.dias {
-  display: flex;
-  align-items: center;
-  margin-left: 40%;
-}
-
-.icono {
-  width: 60px;
-  height: 60px;
-  margin-right: 10px;
-}
-.infolugar {
-  margin-left: 20px;
-}
-.info {
-  margin-left: 200px;
-  display: flex;
-  align-items: left;
-  flex-direction: column;
-}
-
-.texto {
-  font-weight: bold;
-  margin-right: 10px;
-}
-
-.parrafo {
-  margin: 0;
-}
-
-.graficas {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  border: 10px #007bff;
-  width: 100%;
-  height: 50%;
-  align-items: center;
-}
-
-.grafica1,
-.grafica2,
-.grafica3 {
-  width: calc(33.33% - 10px); /* Esto asegura que cada gráfica tenga un tercio del ancho del contenedor y deja un pequeño espacio entre ellas */
-}
-
-.infodias {
-  margin-top: 50px;
-  display: flex;
-  flex-direction: row;
-  margin-left: 20%;
-  margin-right: 20%;
-}
-
-.infodias > div {
-  width: 400px;
-  height: 180px;
-  background-color: #ccc;
-  border: 1px solid #000;
-  margin-right: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-}
-.dia1.seleccionado {
-  background-color: #eb7474 !important; /* Cambia el color de fondo al seleccionado */
-  border: 2px solid #964545; /* Cambia el borde al seleccionado */
-}
-.dia2.seleccionado {
-  background-color: #eb7474 !important; /* Cambia el color de fondo al seleccionado */
-  border: 2px solid #964545; /* Cambia el borde al seleccionado */
-}
-.dia3.seleccionado {
-  background-color: #eb7474 !important; /* Cambia el color de fondo al seleccionado */
-  border: 2px solid #964545; /* Cambia el borde al seleccionado */
-}
-.dia4.seleccionado {
-  background-color: #eb7474 !important; /* Cambia el color de fondo al seleccionado */
-  border: 2px solid #964545; /* Cambia el borde al seleccionado */
-}
-.dia5.seleccionado {
-  background-color: #eb7474 !important; /* Cambia el color de fondo al seleccionado */
-  border: 2px solid #964545; /* Cambia el borde al seleccionado */
-}
-.dia6.seleccionado {
-  background-color: #eb7474 !important; /* Cambia el color de fondo al seleccionado */
-  border: 2px solid #964545; /* Cambia el borde al seleccionado */
-}
-
-.dia1:hover {
-background-color: rgba(255,255,0,0.5);
-}
-.dia2:hover {
-  background-color: rgba(255,255,0,0.5);
-}
-.dia3:hover {
-    background-color: rgba(255,255,0,0.5);
-}
-.dia4:hover {
-      background-color: rgba(255,255,0,0.5);
-}
-.dia5:hover {
-        background-color: rgba(255,255,0,0.5);
-}
-.dia6:hover {
-  background-color: rgba(255,255,0,0.5);
-}
-.textodia {
-  margin-left: 20px; /* Ajusta el margen izquierdo según sea necesario */
-  text-align: center; /* Centra el texto horizontalmente */
-  font-size: 20px; /* Tamaño de fuente ajustado */
-}
-
-.imagendia {
-  margin-right: 20px; /* Ajusta el margen derecho según sea necesario */
-  vertical-align: middle; /* Alinea verticalmente la imagen */
-}
-.map{
-transform:translatey(40px);
-height: 30%;
-}
-.monitorizar{
-  transform:translatex(218px) translatey(-260px);
-  min-height:672px;
-  min-width:957px;
-}

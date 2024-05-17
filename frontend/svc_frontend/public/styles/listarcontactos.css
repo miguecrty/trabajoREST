@@ -1,0 +1,55 @@
+body {
+    background-color: #f8f9fa;
+    font-family: 'Arial', sans-serif;
+  }
+
+  .card {
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .card:hover {
+    transform: scale(1.03);
+  }
+  
+  .btn-outline-primary {
+    border-width: 2px;
+  }
+
+  .display-4 {
+    color: #495057;
+  }
+  
+  .fas {
+    font-size: 1.2rem; 
+  }
+/* Heading */
+.list-group .card h5{
+  transform:translatex(12px) translatey(0px);
+ }
+ 
+ /* Image */
+ .list-group .card img{
+  width:157px !important;
+ }
+ 
+ /* Button */
+ .list-group .card a{
+  transform:translatex(22px) translatey(-3px);
+ }
+ 
+ /* Row */
+#__next div .row{
+  padding-bottom:61px;
+ }
+ /* Text info */
+.list-group .card .text-info{
+  transform:translatex(-267px) translatey(16px);
+ }
+ 
+ /* Badge pill */
+ .list-group .card .badge-pill{
+  transform:translatex(67px) translatey(40px);
+  font-size:19px;
+ }
+ 
+ 

@@ -4,7 +4,7 @@ const { Pool } = require('pg');
 const app = express();
 const pool = new Pool({
   user: 'postgres',
-  host: 'postgres',
+  host: '10.88.0.2',
   database: 'trabajorest',
   password: 'postgres',
   port: 5432,
@@ -22,17 +22,6 @@ app.use((req, res, next) => {
 const PORT = 3000;
 const server = app.listen(PORT, () => {
   console.log(`Servidor Express en funcionamiento en el puerto ${PORT}`);
-});
-
-app.get('/contactos', async (req, res) => {
-  try {
-    console.log("holaaa");
-    const result = await pool.query('SELECT * FROM contactos');
-    res.json(result.rows);
-  } catch (error) {
-    console.error('Error al procesar la solicitud GET:', error);
-    res.status(500).send("Error al procesar la solicitud GET");
-  }
 });
 
 
@@ -103,5 +92,39 @@ app.delete('/contactos', async (req, res) => {
   } catch (error) {
     console.error('Error al eliminar el contacto:', error);
     res.status(500).send("Error al eliminar el contacto");
+  }
+});
+
+app.get('/obtenerdetalle', async (req, res) => {
+  try {
+    const id = req.query.id;
+    const result = await pool.query('SELECT id, nombre_usu, nombre, apellido, email, telefono, imagen FROM contactos where id = $1',[id]);
+    res.json(result.rows);
+  } catch (error) {
+    console.error('Error al procesar la solicitud GET:', error);
+    res.status(500).send("Error al procesar la solicitud GET");
+  }
+});
+
+app.get('/obtenercontactos', async (req, res) => {
+  try {
+    const result = await pool.query('SELECT id,nombre,apellido,imagen,estado FROM contactos');
+    res.json(result.rows);
+  } catch (error) {
+    console.error('Error al procesar la solicitud GET:', error);
+    res.status(500).send("Error al procesar la solicitud GET");
+  }
+});
+
+app.put('/actualizarestado', async (req, res) => {
+  try {
+    
+    const { username, estado }= req.body;
+    console.log(username+estado);
+    await pool.query('UPDATE contactos SET estado = $1 WHERE nombre_usu = $2', [estado,username]);
+    res.status(200).send("Estado actualizado correctamente");
+  } catch (error) {
+    console.error('Error al actualizar el contacto:', error);
+    res.status(500).send("Error al actualizar el contacto");
   }
 });
