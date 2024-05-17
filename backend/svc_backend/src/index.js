@@ -108,7 +108,7 @@ app.get('/obtenerdetalle', async (req, res) => {
 
 app.get('/obtenercontactos', async (req, res) => {
   try {
-    const result = await pool.query('SELECT id,nombre,apellido,imagen,estado FROM contactos');
+    const result = await pool.query('SELECT id,nombre,apellido,imagen,estado FROM contactos ORDER BY id');
     res.json(result.rows);
   } catch (error) {
     console.error('Error al procesar la solicitud GET:', error);

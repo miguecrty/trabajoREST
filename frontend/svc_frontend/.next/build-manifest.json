@@ -27,6 +27,21 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
+    "/detallecontacto": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/detallecontacto.js"
+    ],
+    "/listacontactos": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/listacontactos.js"
+    ],
+    "/menu": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/menu.js"
+    ],
     "/registro": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",

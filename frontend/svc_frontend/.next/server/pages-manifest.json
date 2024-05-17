@@ -4,5 +4,9 @@
   "/_document": "pages/_document.js",
   "/": "pages/index.js",
   "/detallecontacto": "pages/detallecontacto.js",
-  "/registro": "pages/registro.js"
+  "/registro": "pages/registro.js",
+  "/menu": "pages/menu.js",
+  "/listacontactos": "pages/listacontactos.js",
+  "/api/obtenercontactos": "pages/api/obtenercontactos.js",
+  "/api/actualizarestado": "pages/api/actualizarestado.js"
 }
