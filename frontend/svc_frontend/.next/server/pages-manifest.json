@@ -2,10 +2,7 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/listacontactos": "pages/listacontactos.js",
-  "/menu": "pages/menu.js",
   "/": "pages/index.js",
-  "/api/obtenercontactos": "pages/api/obtenercontactos.js",
   "/detallecontacto": "pages/detallecontacto.js",
-  "/api/obtenerdetalle": "pages/api/obtenerdetalle.js"
+  "/registro": "pages/registro.js"
 }

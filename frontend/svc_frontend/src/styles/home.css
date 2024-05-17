@@ -183,3 +183,7 @@ font-size: 20px;
   color: rgb(78, 15, 15);
 }
 
+/* Login form */
+#__next div .login-form{
+  transform:translatex(383px) translatey(65px);
+ }
