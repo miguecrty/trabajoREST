@@ -7,7 +7,7 @@ metadata:
   name: frontend-ingress
 spec:
   rules:
-    - host: etsisevilla.me
+    - host: chat.etsisevilla.me
       http:
         paths:
           - path: /
@@ -19,5 +19,5 @@ spec:
                   number: 8080
   tls:
   - hosts:
-    - etsisevilla.me
-    secretName: etsisevilla-me-tls
+    - chat.etsisevilla.me
+    secretName: chat-etsisevilla-me-tls

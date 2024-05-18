@@ -85,11 +85,9 @@ const Home = () => {
                 <link rel="icon" href="/images/chat.png" />
                 <link rel="stylesheet" href="./styles/detallecontacto.css" />
             </Head>
-            <Cabecera mostrarBotonHome={false} mostrarCerrarSesion={true}/>
             <div className="cargando">
                     <img src="/images/cargando.gif" alt="Cargando" />
             </div>
-            <Pie />
             </>
         );
     }
