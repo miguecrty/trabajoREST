@@ -8,13 +8,13 @@ services:
       - "3000:3000"
     networks:
       - red
-  # frontend:
-  #   build:
-  #     context: ./frontend
-  #   ports:
-  #     - "8080:8080"
-  #   networks:
-  #     - red
+  frontend:
+    build:
+       context: ./frontend
+    ports:
+      - "8080:8080"
+    networks:
+      - red
   postgres:
     image: docker.io/postgres:latest
     networks:
