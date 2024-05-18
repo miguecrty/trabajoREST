@@ -19,6 +19,8 @@ cd bbdd
 podman build -t bbdd .
 id_postgres=$(podman inspect --format='{{.Id}}' bbdd)
 podman image push $id_postgres docker.io/miguecrty/trabajorest:postgres
+cd ..
+cd kubernetes
 kind delete cluster
 kind create cluster
 kubectl apply -f .
