@@ -3,7 +3,7 @@ export default async function handler(req, res) {
         username : req.body.username,
         estado: req.body.estado
     }
-    const response = await fetch('http://localhost:3000/actualizarestado', { 
+    const response = await fetch('http://backend:3000/actualizarestado', { 
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'

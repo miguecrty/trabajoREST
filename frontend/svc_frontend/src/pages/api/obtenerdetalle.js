@@ -2,14 +2,14 @@ export default async function handler(req, res) {
     try {
         const id = req.query.id;
         let nombre_usu = req.query.n;
-        let peticion = `http://localhost:3000/obtenerdetalle?`;
+        let peticion = `http://backend:3000/obtenerdetalle?`;
         if (id != null)
             {
-                peticion = `http://localhost:3000/obtenerdetalle?id=${id}`;
+                peticion = `http://backend:3000/obtenerdetalle?id=${id}`;
             }
         if (nombre_usu != null)
             {
-                peticion = `http://localhost:3000/obtenerdetalle?nombre_usu=${nombre_usu}`;
+                peticion = `http://backend:3000/obtenerdetalle?nombre_usu=${nombre_usu}`;
                
             }
         const response = await fetch(peticion, {

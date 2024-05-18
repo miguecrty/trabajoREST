@@ -1,5 +1,5 @@
 export default async function handler(req, res) {
-    const response = await fetch('http://localhost:3000/borrarcuenta', { 
+    const response = await fetch('http://backend:3000/borrarcuenta', { 
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json'

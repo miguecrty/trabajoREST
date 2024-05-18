@@ -1,5 +1,5 @@
 export default async function handler(req, res) {
-        const response = await fetch('http://localhost:3000/registrar', { 
+        const response = await fetch('http://backend:3000/registrar', { 
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

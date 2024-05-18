@@ -1,5 +1,5 @@
 export default async function handler(req, res) {
-    const response = await fetch('http://localhost:3000/obtenermensajes', { 
+    const response = await fetch('http://backend:3000/obtenermensajes', { 
         method: 'GET',
         headers: {
             'Content-Type': 'application/json'

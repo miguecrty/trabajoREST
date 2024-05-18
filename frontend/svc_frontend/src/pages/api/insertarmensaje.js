@@ -4,7 +4,7 @@ export default async function handler(req, res) {
         nombre_usu: req.body.nombre_usu,
         hora: req.body.hora
     };
-    const response = await fetch('http://localhost:3000/insertarmensaje', { 
+    const response = await fetch('http://backend:3000/insertarmensaje', { 
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
