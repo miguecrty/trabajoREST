@@ -57,9 +57,15 @@ const ListaContactos = () => {
                                         <div className="card-body">
                                             <h5 className="card-title mb-0">{contacto.nombre} {contacto.apellido}</h5>
                                             <div className="d-flex justify-content-between align-items-center mb-3">
-                                                <img src={contacto.imagen} alt="Avatar" className="mr-2 rounded-circle" style={{ width: "100px", height: "100x" }} />
-                                                <p className="badge badge-pill badge-light text-dark">{contacto.estado}</p>
-                                                <p className="text-info">Estado</p>
+                                            <img src={contacto.imagen} alt="Avatar" className="mr-2 rounded-circle" style={{ width: "100px", height: "100px" }} />
+                                                <>
+                                                    { contacto.estado != null ? (
+                                                        <p className="badge badge-pill badge-light text-dark">{contacto.estado}</p>
+                                                    ) : (
+                                                        <p className="badge badge-pill badge-light text-danger" style={{fontSize:'12px'}}>Sin estado </p>
+                                                    )}
+                                                    <p className="text-info">Estado</p>
+                                                </>
                                             </div>
                                             <a className="btn btn-outline-primary" href={`/detallecontacto?id=${contacto.id}`}>Ver Detalles</a>
                                         </div>

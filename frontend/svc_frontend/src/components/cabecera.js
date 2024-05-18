@@ -8,6 +8,7 @@ const Cabecera = ({ mostrarBotonHome, mostrarCerrarSesion }) => {
     const [estadoActualizado, setEstadoActualizado] = useState('');
     const [mostrarRecuadroTexto, setMostrarRecuadroTexto] = useState(false);
     const [nuevoTexto, setNuevoTexto] = useState('');
+    const [mostrarSelectBorrarCuenta, setMostrarSelectBorrarCuenta] = useState(false);
 
     async function actualizarEstado(estado) {
         try {
@@ -26,6 +27,41 @@ const Cabecera = ({ mostrarBotonHome, mostrarCerrarSesion }) => {
             if(response.ok)
                 {
                     console.log("Estado modificado con éxito!");
+                }
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    }
+    async function borrarLaCuenta(usuario) {
+        try {
+            const valores = {
+                username: usuario,
+            }
+            const response = await fetch('/api/borrarcuenta', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(valores)
+            });
+            if(response.ok)
+                {
+                    console.log("Estado modificado con éxito!");
+                }
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    }
+
+    async function borrarCuenta() {
+        try {
+            if(confirm("Estas seguro que quieres borrar la cuenta??"))
+            
+                {
+                borrarLaCuenta(username);
+                alert('Cuenta borrada...');
+                Cookies.remove('isLoggedIn');
+                router.push('/');
                 }
         } catch (error) {
             console.error('Error:', error);
@@ -66,6 +102,10 @@ const Cabecera = ({ mostrarBotonHome, mostrarCerrarSesion }) => {
         setMostrarRecuadroTexto(false);
     };
 
+    const handleMostrarSelectBorrarCuenta = () => {
+        setMostrarSelectBorrarCuenta(!mostrarSelectBorrarCuenta);
+    };
+
     return (
         <header style={{ backgroundColor: 'rgba(0, 80, 255, 0.5)', color: 'white', paddingTop: '0.5px', paddingBottom:'0.5px', textAlign: 'center', width: '100%' }}>
             <nav>
@@ -80,14 +120,19 @@ const Cabecera = ({ mostrarBotonHome, mostrarCerrarSesion }) => {
                             <>
                                 <button onClick={toggleRecuadroTexto} style={{marginRight:'40px' }}>Nuevo Estado</button>
                                 {mostrarRecuadroTexto && (
-                            <form onSubmit={handleSubmitTexto} style={{marginRight:'40px' }}>
-                                <input type="text" value={nuevoTexto} onChange={handleChangeTexto} placeholder="Introduce tu texto" />
-                                <button type="submit">✅</button>
-                            </form>
-                        )}
-                                <img src="./images/perfil.png" alt="Inicio" style={{ width: '30px', height: '30px', marginRight:'10px' }}/>
-                                <span style={{ color: 'black', marginRight: '50px' }}><strong>{username}</strong></span>
+                                    <form onSubmit={handleSubmitTexto} style={{marginRight:'40px' }}>
+                                        <input type="text" value={nuevoTexto} onChange={handleChangeTexto} placeholder="Introduce tu texto" />
+                                        <button type="submit">✅</button>
+                                    </form>
+                                )}
+                                <img onClick={handleMostrarSelectBorrarCuenta} src="./images/perfil.png" alt="Inicio" style={{ width: '30px', height: '30px', marginRight:'10px', cursor: 'pointer' }}/>
+                                <span style={{ color: 'black', marginRight: '50px' }}><strong>{username}</strong>{mostrarSelectBorrarCuenta && (
+                                    <small>
+                                    <button onClick={borrarCuenta} className='botonborrarcuenta'>Borrar cuenta</button>
+                                    </small>
+                                )}</span>
                                 <button onClick={handleLogout} className='btn cerrar'>Cerrar Sesión</button>
+                                
                             </>
                         )}
                         
@@ -99,4 +144,3 @@ const Cabecera = ({ mostrarBotonHome, mostrarCerrarSesion }) => {
 }
 
 export default Cabecera;
-

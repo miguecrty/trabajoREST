@@ -14,10 +14,10 @@ const Registro = () => {
     const [apellido, setApellido] = useState('');
     const [telefono, setTelefono] = useState('');
     const [email, setEmail] = useState('');
+    const [imagen, setImagen] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState('');
-    const videoRef = useRef(null);
-    const canvasRef = useRef(null);
+
 
     const registrarUsuario = async (userData) => {
         try {
@@ -50,7 +50,8 @@ const Registro = () => {
                         nombre: nombre,
                         apellido: apellido,
                         telefono: telefono,
-                        email: email
+                        email: email,
+                        imagen: imagen
                     };
                     registrarUsuario(userData);
                  
@@ -103,6 +104,9 @@ const Registro = () => {
                     <div className="password-fields">
                         <input type="password" placeholder="Contraseña" value={password} onChange={(e) => setPassword(e.target.value)} />
                         <input type="password" placeholder="Repetir Contraseña" value={r_password} onChange={(e) => setRPassword(e.target.value)} />
+                    </div>
+                    <div className="user-fields" style={{width:'100%'}} >
+                        <input type="text" placeholder="URL Imagen" value={imagen} onChange={(e) => setImagen(e.target.value)} />
                     </div>
                     <button onClick={handleRegistrar}>Registrar</button>
                     {error && <div className="error-message">{error}</div>}

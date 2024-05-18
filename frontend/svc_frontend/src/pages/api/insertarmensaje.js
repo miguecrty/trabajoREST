@@ -5,7 +5,7 @@ export default async function handler(req, res) {
         hora: req.body.hora
     };
     const response = await fetch('http://localhost:3000/insertarmensaje', { 
-        method: 'PUT',
+        method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },

@@ -187,3 +187,14 @@ font-size: 20px;
 #__next div .login-form{
   transform:translatex(383px) translatey(65px);
  }
+ .botonborrarcuenta{
+  background: #f44336;
+  position: absolute;
+ transform:translatex(-94px) translatey(40px);
+ border-radius: 10%;
+
+ }
+ .botonborrarcuenta:hover{
+  background: #030303;
+  color: #ccc;
+ }

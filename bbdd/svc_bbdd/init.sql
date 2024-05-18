@@ -10,7 +10,7 @@ clave VARCHAR(20),
 nombre VARCHAR(20),
 apellido VARCHAR(20),
 email VARCHAR(20),
-telefono VARCHAR(10),
+telefono VARCHAR(20),
 imagen TEXT,
 estado VARCHAR(70),
 PRIMARY KEY (id,nombre_usu));

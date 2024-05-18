@@ -33,8 +33,7 @@ const Home = () => {
                     router.push('/menu');
                 }, 1500);
             } else {
-                const responseData = await response.json();
-                setError(responseData.error);
+                setError("Credenciales incorrectas");
             }
         } catch (error) {
             console.error(error);

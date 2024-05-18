@@ -1,15 +1,10 @@
 export default async function handler(req, res) {
-        const userData = {
-            username: req.body.username,
-            password: req.body.password
-        };
-        console.log(userData);
         const response = await fetch('http://localhost:3000/registrar', { 
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(userData)
+            body: JSON.stringify(req.body)
         });
 
         if (response.ok) {
