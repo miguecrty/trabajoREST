@@ -17,7 +17,7 @@ const Cabecera = ({ mostrarBotonHome, mostrarCerrarSesion }) => {
                 estado: estado
             }
             const response = await fetch('/api/actualizarestado', {
-                method: 'POST',
+                method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'
                 },
@@ -38,7 +38,7 @@ const Cabecera = ({ mostrarBotonHome, mostrarCerrarSesion }) => {
                 username: usuario,
             }
             const response = await fetch('/api/borrarcuenta', {
-                method: 'POST',
+                method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json'
                 },

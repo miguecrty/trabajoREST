@@ -15,7 +15,7 @@ const Chat = () => {
     async function actualizarTablaMensajes() {
         try {
             const response = await fetch('/api/obtenermensajes', {
-                method: 'POST',
+                method: 'GET',
                 headers: {
                     'Content-Type': 'application/json'
                 },
@@ -30,13 +30,6 @@ const Chat = () => {
     }
 
     useEffect(() => {
-        const eventSource = new EventSource('/api/sse');
-  eventSource.onmessage = (event) => {
-    const data = JSON.parse(event.data);
-    console.log('Received message from server:', data);
-    // Maneja los eventos recibidos según sea necesario
-    // Por ejemplo, puedes actualizar el estado de los mensajes
-  };
         actualizarTablaMensajes();
     }, []);
 
